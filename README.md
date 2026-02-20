@@ -23,6 +23,7 @@ streamlit run streamlit_app.py
 Notes:
 - If Streamlit shows missing output files, run step 2 again.
 - Notebook workflow is also available in `main.ipynb` (run top-to-bottom).
+- Modeling code is extracted in `modeling.py` and used by the dashboard.
 
 ## Executive Summary
 The objective is to evaluate how market sentiment (Fear/Greed) relates to trader behavior and performance, and then convert findings into actionable strategy rules.
@@ -238,11 +239,32 @@ python clean_and_analyze.py
 streamlit run streamlit_app.py
 ```
 
+### 8.5 Use the Extracted Model Module Directly
+The model logic is centralized in `modeling.py`.
+
+Example usage:
+```python
+import pandas as pd
+from modeling import (
+    run_market_day_profitability_model,
+    run_trader_day_models,
+    cluster_traders,
+)
+
+daily = pd.read_csv("daily_trade_metrics.csv", parse_dates=["trade_date"])
+account_daily = pd.read_csv("account_daily_metrics.csv", parse_dates=["trade_date"])
+trader_features = pd.read_csv("trader_features_segments.csv")
+
+market_result = run_market_day_profitability_model(daily)
+trader_result = run_trader_day_models(account_daily, daily)
+cluster_result = cluster_traders(trader_features, n_clusters=4)
+```
+
 ## 9) Repository Contents
 - `main.ipynb`: complete assignment workflow + advanced evaluation
 - `clean_and_analyze.py`: script pipeline
 - `streamlit_app.py`: dashboard
-- `checkin.ipynb`: iterative notebook version
+- `modeling.py`: extracted model and clustering logic used by notebook/dashboard
 - `requirements.txt`: dependencies
 - output data artifacts:
   - `fear_greed_index_clean.csv`
