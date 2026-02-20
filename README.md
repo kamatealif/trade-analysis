@@ -220,26 +220,9 @@ Interactive dashboard in `streamlit_app.py` includes tabs for:
 
 ## 8) Reproducibility
 
-### 8.1 Environment Setup
-```bash
-pip install -r requirements.txt
-```
+Environment setup and run commands are intentionally kept in one place at the top under **Quick Start (For Reviewers)**.
 
-### 8.2 Run Notebook (Primary)
-- Open `main.ipynb`
-- Run cells top-to-bottom
-
-### 8.3 Run Script Pipeline
-```bash
-python clean_and_analyze.py
-```
-
-### 8.4 Run Dashboard
-```bash
-streamlit run streamlit_app.py
-```
-
-### 8.5 Use the Extracted Model Module Directly
+### 8.1 Use the Extracted Model Module Directly
 The model logic is centralized in `modeling.py`.
 
 Example usage:
