@@ -1,0 +1,2 @@
+model,accuracy,precision,recall,f1
+Majority baseline,0.6587446678854357,0.6587446678854357,1.0,0.7942689199118295

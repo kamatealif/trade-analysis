@@ -2,6 +2,28 @@
 
 This repository is my complete submission for the **Data Science / Analytics Intern - Round-0 Assignment**.
 
+## Quick Start (For Reviewers)
+If you want to run the project immediately:
+
+1. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+2. Generate cleaned data and analysis outputs
+```bash
+python clean_and_analyze.py
+```
+
+3. Run the Streamlit app
+```bash
+streamlit run streamlit_app.py
+```
+
+Notes:
+- If Streamlit shows missing output files, run step 2 again.
+- Notebook workflow is also available in `main.ipynb` (run top-to-bottom).
+
 ## Executive Summary
 The objective is to evaluate how market sentiment (Fear/Greed) relates to trader behavior and performance, and then convert findings into actionable strategy rules.
 
@@ -47,6 +69,7 @@ Implemented in:
 - Out-of-sample validation of strategy rules (time split).
 - Risk metrics by trader segment (drawdown, VaR, CVaR).
 - Lightweight predictive baseline (next-day profitability bucket).
+- Trader clustering into behavioral archetypes.
 - Streamlit dashboard.
 
 Implemented in:
@@ -123,6 +146,10 @@ Segment labels:
 - Predictive baseline:
   - target: next-day profitability bucket
   - models: majority baseline and logistic regression baseline (if available)
+- Trader-level predictive extension:
+  - target 1: next-day trader profitability bucket
+  - target 2: next-day volatility proxy (`abs(next_day_pnl)`)
+  - models: majority/mean baselines + logistic/ridge (if available)
 
 ## 5) Results and Findings
 
@@ -187,6 +214,7 @@ Interactive dashboard in `streamlit_app.py` includes tabs for:
 - Coins
 - Segment Risk
 - Out-of-Sample Validation
+- Archetype Clustering
 - Predictive Baseline
 
 ## 8) Reproducibility
@@ -225,6 +253,10 @@ streamlit run streamlit_app.py
   - `account_daily_metrics.csv`
   - `daily_market_metrics.csv`
   - `trader_features_segments.csv`
+  - `trader_archetypes.csv`
+  - `trader_archetype_summary.csv`
+  - `trader_profitability_model_metrics.csv`
+  - `trader_volatility_model_metrics.csv`
 
 ## 10) Limitations
 - Raw historical `Timestamp` is coarse/low-resolution; `Timestamp IST` was used as authoritative time.
@@ -233,4 +265,3 @@ streamlit run streamlit_app.py
 
 ## 11) Next High-Impact Improvement
 A strong next step is a walk-forward backtest with transaction-cost-aware execution assumptions and segment-specific risk constraints.
-# trade-analysis
